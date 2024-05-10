@@ -1,7 +1,3 @@
-import './user_total_purchases.model.aml' {
-  user_total_purchases as model__user_total_purchases
-}
-
 Model user_ranks {
   type: 'query'
   label: 'User Ranks'
@@ -51,6 +47,6 @@ Model user_ranks {
           end rank_number
         from {{ #user_total_purchases }};;
   models: [
-    model__user_total_purchases
+    user_total_purchases
   ]
 }

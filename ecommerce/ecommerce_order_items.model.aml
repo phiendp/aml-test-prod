@@ -21,7 +21,7 @@ Model ecommerce_order_items {
     hidden: false
     definition: @sql {{ #SOURCE.quantity }};;
   }
-    dimension quantity2 {
+  dimension quantity2 {
     label: 'Quantity Negative'
     type: 'number'
     hidden: false
