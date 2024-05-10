@@ -1,0 +1,56 @@
+Dashboard canvas {
+  title: 'Canvas'
+  description: ''''''
+  block v1: VizBlock {
+    label: 'Report'
+    viz: DataTable {
+      dataset: user_rank_distribution
+      fields: [
+        VizFieldFull {
+          ref: ref('ecommerce_orders', 'id')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_orders', 'status')
+          format {
+            type: 'text'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_orders', 'discount')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_orders', 'created_at')
+          format {
+            type: 'datetime'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_orders', 'delivery_attempts')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        }
+      ]
+      settings {
+        show_row_number: true
+      }
+    }
+  }
+  view: CanvasLayout {
+    label: 'View 1'
+    height: 800
+    block v1 {
+      position: pos(20, 20, 400, 300)
+    }
+  }
+
+}
