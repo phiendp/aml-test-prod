@@ -1,0 +1,11 @@
+Dataset ecommerce_storage_api {
+  label: 'Ecommerce Storage Api'
+  description: '111'
+  data_source_name: 'bigquery_with_storage_api'
+  models: [
+    test_ecommerce_orders_1
+  ]
+  relationships: [
+  ]
+  owner: 'tien.tt@holistics.io'
+}

@@ -40,6 +40,6 @@ Model ecommerce_products {
     definition: @sql {{ #SOURCE.created_at }};;
   }
 
-  owner: 'scott.bui@holistics.io'
+  owner: 'phien.pham@holistics.io'
   table_name: '"ecommerce"."products"'
 }

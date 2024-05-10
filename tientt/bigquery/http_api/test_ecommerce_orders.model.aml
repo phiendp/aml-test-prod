@@ -1,8 +1,7 @@
-Model ecommerce_orders {
-  type: 'table'
-  label: 'Orders'
+Model test_ecommerce_orders {
+  type: 'query'
   description: ''
-  data_source_name: 'demodb'
+  data_source_name: 'bigquery_with_http_api'
   dimension id {
     label: 'Id'
     type: 'number'
@@ -40,6 +39,10 @@ Model ecommerce_orders {
     definition: @sql {{ #SOURCE.delivery_attempts }};;
   }
 
-  owner: 'scott.bui@holistics.io'
-  table_name: '"ecommerce"."orders"'
+  owner: 'tien.tt@holistics.io'
+  query: @sql
+    #standardSQL
+    select * from test.ecommerce_orders;;
+  models: [
+  ]
 }

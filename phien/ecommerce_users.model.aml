@@ -64,6 +64,6 @@ Model ecommerce_users {
     definition: @sql {{ #SOURCE.full_name }};;
   }
 
-  owner: 'scott.bui@holistics.io'
+  owner: 'phien.pham@holistics.io'
   table_name: '"ecommerce"."users"'
 }

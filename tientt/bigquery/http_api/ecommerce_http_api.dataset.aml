@@ -1,0 +1,12 @@
+Dataset ecommerce_http_api {
+  label: 'Ecommerce Http Api'
+  description: ''
+  data_source_name: 'bigquery_with_http_api'
+  models: [
+    test_ecommerce_orders,
+    test_ecommerce_orders_datetime
+  ]
+  relationships: [
+  ]
+  owner: 'tien.tt@holistics.io'
+}
