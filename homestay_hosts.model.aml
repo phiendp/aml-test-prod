@@ -1,7 +1,7 @@
 Model homestay_hosts {
   type: 'table'
   label: 'Hosts'
-  description: '123'
+  description: 'Description 111'
   data_source_name: 'demodb'
   dimension id {
     label: 'Id'
@@ -11,6 +11,7 @@ Model homestay_hosts {
   }
   dimension url {
     label: 'Url'
+    description: 'abc'
     type: 'text'
     hidden: false
     definition: @sql {{ #SOURCE.url }};;

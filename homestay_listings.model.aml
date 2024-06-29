@@ -1,7 +1,7 @@
 Model homestay_listings {
   type: 'table'
   label: 'Listings'
-  description: 'test'
+  description: 'test sdfanifirfiwerf'
   data_source_name: 'demodb'
   dimension id {
     label: 'Id'

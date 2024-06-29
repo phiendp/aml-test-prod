@@ -1,6 +1,6 @@
 Model ecommerce_categories {
   type: 'table'
-  label: 'Categories vux'
+  label: 'Categories vux abc'
   description: '123'
   data_source_name: 'demodb'
   dimension id {
