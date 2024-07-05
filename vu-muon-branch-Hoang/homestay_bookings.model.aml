@@ -11,7 +11,7 @@ Model homestay_bookings {
   }
   dimension listing_id {
     description: '123'
-    label: 'Listing Id'
+    label: 'Listing Idddd'
     type: 'number'
     hidden: false
     definition: @sql {{ #SOURCE.listing_id }};;

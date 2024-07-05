@@ -11,7 +11,7 @@ Model homestay_hosts {
   }
   dimension url {
     label: 'Url'
-    description: 'abc'
+    description: 'abcdefghi'
     type: 'text'
     hidden: false
     definition: @sql {{ #SOURCE.url }};;
