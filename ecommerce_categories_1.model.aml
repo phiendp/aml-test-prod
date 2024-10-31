@@ -6,8 +6,8 @@ Model ecommerce_categories_1 {
   dimension id {
     label: 'Id'
     type: 'number'
-    hidden: false
     definition: @sql {{ #SOURCE.id }};;
+    description: "pk"
   }
   dimension name {
     label: 'Name'
@@ -21,7 +21,7 @@ Model ecommerce_categories_1 {
     hidden: false
     definition: @sql {{ #SOURCE.parent_id }};;
   }
-// commend sthing
+  // commend sthing
   owner: 'huy.vu@holistics.io'
   table_name: '"ecommerce"."categories"'
 }

@@ -6,8 +6,8 @@ Model homestay_listings {
   dimension id {
     label: 'Id'
     type: 'number'
-    hidden: false
     definition: @sql {{ #SOURCE.id }};;
+    description: "pkpkpkpkk"
   }
   dimension name {
     label: 'Name'
