@@ -1,11 +1,12 @@
 Dashboard unnamed {
-  title: 'Unnamed Dashboard ne'
+  title: 'Unnamed Dashboard nerrrrwerwerwereeeee'
   description: ''''''
   view: CanvasLayout {
     label: 'View 1'
-    height: 800
+    width: 1210
+    height: 810
     block v1 {
-      position: pos(40, 10, 400, 300)
+      position: pos(60, 20, 570, 310)
     }
   }
   block v1: VizBlock {

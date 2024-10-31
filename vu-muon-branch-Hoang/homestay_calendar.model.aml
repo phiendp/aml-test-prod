@@ -1,7 +1,7 @@
 Model homestay_calendar {
   type: 'table'
   label: 'Calendar'
-  description: 'calendar vux xyz'
+  description: 'calendar vux xyssssz'
   data_source_name: 'demodb'
   dimension listing_id {
     label: 'Listing Id'

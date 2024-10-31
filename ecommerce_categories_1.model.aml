@@ -1,13 +1,13 @@
-Model ecommerce_categories_1 {
+Model ecommerce_categories_12 {
   type: 'table'
   label: 'Categories'
-  description: 'Categories Descriptions'
+  description: 'Categories abc'
   data_source_name: 'demodb'
   dimension id {
     label: 'Id'
     type: 'number'
     definition: @sql {{ #SOURCE.id }};;
-    description: "pk"
+    description: "primary key"
   }
   dimension name {
     label: 'Name'

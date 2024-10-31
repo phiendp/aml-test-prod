@@ -1,6 +1,6 @@
 Model homestay_neighbourhoods {
   type: 'table'
-  label: 'Neighbourhoods'
+  label: 'Neighbourhoodss'
   description: 'in da hood with homies'
   data_source_name: 'demodb'
   dimension id {

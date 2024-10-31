@@ -1,0 +1,11 @@
+Dataset test_large_table_dataset {
+  label: 'Test Large Table Dataset'
+  description: ''
+  data_source_name: 'bigquery_with_http_api'
+  models: [
+    test_large_table
+  ]
+  relationships: [
+  ]
+  owner: 'tien.tt@holistics.io'
+}
