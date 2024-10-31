@@ -1,6 +1,6 @@
 Model homestay_listing_amenities {
   type: 'table'
-  label: 'Listing Amenities'
+  label: 'Listing Amenitiess'
   description: ''
   data_source_name: 'demodb'
   dimension listing_id {

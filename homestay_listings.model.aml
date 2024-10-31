@@ -1,13 +1,14 @@
 Model homestay_listings {
   type: 'table'
-  label: 'Listings'
-  description: 'test sdfanifirfiwerf123'
+  label: 'Listings hahahahaha'
+  description: ''
+
   data_source_name: 'demodb'
   dimension id {
     label: 'Id'
     type: 'number'
-    hidden: false
     definition: @sql {{ #SOURCE.id }};;
+    description: "go go meo meo"
   }
   dimension name {
     label: 'Name'

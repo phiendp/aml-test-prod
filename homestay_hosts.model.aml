@@ -1,13 +1,19 @@
 Model homestay_hosts {
   type: 'table'
-  label: 'Hosts'
-  description: 'Description 111 go go meo meo'
+  label: 'Hostssss'
+  description: 'Description 111'
   data_source_name: 'demodb'
   dimension id {
-    label: 'Id'
+    label: 'Iddddd'
     type: 'number'
-    hidden: false
     definition: @sql {{ #SOURCE.id }};;
+    description: "hehe"
+  }
+  dimension id_2 {
+    label: 'Id -->'
+    type: 'text'
+    hidden: false
+    definition: @sql concat({{ #SOURCE.id }},'-->', {{ #SOURCE.id}});;
   }
   dimension url {
     label: 'Url'

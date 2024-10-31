@@ -1,7 +1,7 @@
-Dataset hsds {
+Dataset sdsd {
   label: 'Tai test'
   description: 'hihihi'
-  data_source_name: 'demodb'
+  data_source_name: 'demo_test'
   models: [
     homestay_hosts,
     homestay_listings
