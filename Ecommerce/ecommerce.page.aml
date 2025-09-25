@@ -1,0 +1,247 @@
+Dashboard untitled_3 {
+  title: 'Ecommerce Dashboard'
+  description: ''''''
+
+  view: TabLayout {
+    label: 'View 1'
+    tab tab1: CanvasLayout {
+      label: 'Tab 1'
+      width: 1245
+      height: 890
+      grid_size: 5
+      block v1 {
+        position: pos(30, 40, 260, 140)
+        layer: 1
+      }
+      block v2 {
+        position: pos(30, 185, 260, 145)
+        layer: 2
+      }
+      block v3 {
+        position: pos(295, 40, 510, 290)
+        layer: 3
+      }
+      block v4 {
+        position: pos(815, 40, 400, 290)
+        layer: 4
+      }
+      block v5 {
+        position: pos(25, 335, 780, 520)
+        layer: 5
+      }
+      block v6 {
+        position: pos(810, 335, 400, 520)
+        layer: 6
+      }
+    }
+  }
+  theme: H.themes.oasis
+  block v1: VizBlock {
+    label: 'Total Users compared with Total Users (Prev. 1y)'
+    viz: MetricKpi {
+      dataset: ecommerce
+      value: VizFieldFull {
+        label: 'Total Users'
+        ref: ref('ecommerce_orders', 'user_id')
+        aggregation: 'count'
+        format {
+          type: 'number'
+          pattern: 'inherited'
+        }
+      }
+      settings {
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+    settings {
+      hide_label: true
+    }
+  }
+  block v2: VizBlock {
+    label: 'Count of Order Id'
+    viz: MetricKpi {
+      dataset: ecommerce
+      value: VizFieldFull {
+        label: 'Total Orders'
+        ref: ref('ecommerce_order_items', 'order_id')
+        aggregation: 'count'
+        format {
+          type: 'number'
+          pattern: 'inherited'
+        }
+      }
+      settings {
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+    settings {
+      hide_label: true
+    }
+  }
+  block v3: VizBlock {
+    label: 'Total Users by Month Sign Up At'
+    viz: LineChart {
+      dataset: ecommerce
+      filter {
+        field: ref('ecommerce_users', 'sign_up_at')
+        operator: 'matches'
+        value: 'last 3 years'
+      }
+      x_axis: VizFieldFull {
+        ref: ref('ecommerce_users', 'sign_up_at')
+        transformation: 'datetrunc month'
+        format {
+          type: 'date'
+          pattern: 'LLL yyyy'
+        }
+      }
+      y_axis {
+        series {
+          field: VizFieldFull {
+            label: 'Total Users'
+            ref: ref('ecommerce_users', 'id')
+            aggregation: 'count'
+            format {
+              type: 'number'
+              pattern: 'inherited'
+            }
+          }
+        }
+      }
+      settings {
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  block v4: VizBlock {
+    label: 'Total Orders by Gender'
+    viz: PieChart {
+      dataset: ecommerce
+      legend: VizFieldFull {
+        ref: ref('ecommerce_users', 'gender')
+        format {
+          type: 'text'
+        }
+      }
+      series {
+        field: VizFieldFull {
+          label: 'orders'
+          ref: ref('ecommerce_orders', 'id')
+          aggregation: 'count'
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        }
+      }
+      settings {
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  block v5: VizBlock {
+    label: 'Order Details'
+    viz: DataTable {
+      dataset: ecommerce
+      theme {
+
+      }
+      fields: [
+        VizFieldFull {
+          ref: ref('ecommerce_orders', 'id')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_orders', 'created_at')
+          transformation: 'datetrunc year'
+          format {
+            type: 'date'
+            pattern: 'yyyy'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_orders', 'status')
+          format {
+            type: 'text'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_orders', 'discount')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        },
+        VizFieldFull {
+          ref: ref('ecommerce_orders', 'delivery_attempts')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        }
+      ]
+      settings {
+        show_row_number: true
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  block v6: VizBlock {
+    label: 'Total Orders by Name'
+    viz: ColumnChart {
+      dataset: ecommerce
+      x_axis: VizFieldFull {
+        ref: ref('ecommerce_countries', 'name')
+        format {
+          type: 'text'
+        }
+      }
+      legend: VizFieldFull {
+        ref: ref('ecommerce_orders', 'status')
+        format {
+          type: 'text'
+        }
+      }
+      y_axis {
+        settings {
+          stack_series_by: 'value'
+        }
+        series {
+          field: VizFieldFull {
+            label: 'Total Orders'
+            ref: ref('ecommerce_orders', 'id')
+            aggregation: 'count'
+            format {
+              type: 'number'
+              pattern: 'inherited'
+            }
+          }
+        }
+      }
+      settings {
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+Model public_users_123 {
+  type: 'table'
+  label: 'Users'
+  description: ''
+  data_source_name: 'staging2'
+  dimension id {
+    label: 'Id'
+    type: 'number'
+    hidden: false
+    definition: @sql {{ #SOURCE.id }};;
+  }
+  dimension name {
+    label: 'Name'
+    type: 'text'
+    hidden: false
+    definition: @sql {{ #SOURCE.name }};;
+  }
+  dimension email {
+    label: 'Email'
+    type: 'text'
+    hidden: false
+    definition: @sql {{ #SOURCE.email }};;
+  }
+  dimension role {
+    label: 'Role'
+    type: 'text'
+    hidden: false
+    definition: @sql {{ #SOURCE.role }};;
+  }
+  dimension created_at {
+    label: 'Created At'
+    type: 'datetime'
+    hidden: false
+    definition: @sql {{ #SOURCE.created_at }};;
+  }
+  dimension updated_at {
+    label: 'Updated At'
+    type: 'datetime'
+    hidden: false
+    definition: @sql {{ #SOURCE.updated_at }};;
+  }
+  dimension tenant_id {
+    label: 'Tenant Id'
+    type: 'number'
+    hidden: false
+    definition: @sql {{ #SOURCE.tenant_id }};;
+  }
+
+  owner: 'tien.tt@holistics.io'
+  table_name: '"public"."users"'
+  measure count_user {
+    label: "Count User"
+    type: "number"
+    description: ""
+    definition: @sql {{ #SOURCE.id }};;
+    aggregation_type: "count"
+  }
+}

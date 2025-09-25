@@ -1,0 +1,205 @@
+Dashboard untitled_2 {
+  title: 'Untitled 2'
+  description: ''''''
+  block v1: VizBlock {
+    label: 'users'
+    viz: DataTable {
+      dataset: users
+      fields: [
+        VizFieldFull {
+          ref: ref('public_users', 'id')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        },
+        VizFieldFull {
+          ref: ref('public_users', 'email')
+          format {
+            type: 'text'
+          }
+        },
+        VizFieldFull {
+          ref: ref('public_users', 'created_at')
+          format {
+            type: 'datetime'
+          }
+        }
+      ]
+      settings {
+        show_row_number: true
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  block v2: VizBlock {
+    label: 'users (dup)'
+    viz: DataTable {
+      dataset: users
+      fields: [
+        VizFieldFull {
+          ref: ref('public_users', 'id')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        },
+        VizFieldFull {
+          ref: ref('public_users', 'email')
+          format {
+            type: 'text'
+          }
+        },
+        VizFieldFull {
+          ref: ref('public_users', 'created_at')
+          format {
+            type: 'datetime'
+          }
+        }
+      ]
+      settings {
+        show_row_number: true
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  block v3: VizBlock {
+    label: '1'
+    viz: DataTable {
+      dataset: users
+      fields: [
+        VizFieldFull {
+          ref: ref('public_users', 'nux')
+        }
+      ]
+      settings {
+        show_row_number: true
+        row_limit: 1
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  block v4: VizBlock {
+    label: '1 (dup)'
+    viz: DataTable {
+      dataset: users
+      fields: [
+        VizFieldFull {
+          ref: ref('public_users', 'nux')
+          aggregation: 'count'
+          format {
+            type: 'number'
+            pattern: '#,###\\%'
+          }
+        }
+      ]
+      settings {
+        show_row_number: true
+        row_limit: 1
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  block v5: VizBlock {
+    label: '1 (dup) (dup)'
+    viz: DataTable {
+      dataset: users
+      calculation untitled_metric_15b8732 {
+        label: 'Untitled Metric'
+        formula: @aql '<a href="google.com" target="_blank" style="color:red">test</a>';;
+        calc_type: 'measure'
+        data_type: 'text'
+      }
+      fields: [
+        VizFieldFull {
+          ref: 'untitled_metric_15b8732'
+          format {
+            type: 'html'
+          }
+        }
+      ]
+      settings {
+        show_row_number: true
+        row_limit: 1
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  block v6: VizBlock {
+    label: '1 (dup) (dup)'
+    viz: DataTable {
+      dataset: users
+      fields: [
+        VizFieldFull {
+          ref: ref('public_users', 'name')
+          format {
+            type: 'text'
+          }
+        }
+      ]
+      settings {
+        show_row_number: true
+        row_limit: 1
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  block f1: FilterBlock {
+    label: 'a'
+    type: 'text'
+    default {
+      operator: 'is'
+      value: "'Default Filter'"
+    }
+  }
+
+  view: CanvasLayout {
+    label: 'View 1'
+    height: 840
+    grid_size: 20
+    block v1 {
+      position: pos(20, 160, 420, 280)
+      layer: 1
+    }
+    block v2 {
+      position: pos(20, 460, 420, 300)
+      layer: 1
+    }
+    block v3 {
+      position: pos(460, 160, 260, 220)
+    }
+    block v4 {
+      position: pos(740, 160, 320, 220)
+    }
+    block v5 {
+      position: pos(460, 400, 260, 200)
+    }
+    block v6 {
+      position: pos(740, 400, 320, 220)
+    }
+    block f1 {
+      position: pos(20, 20, 300, 100)
+      layer: 2
+    }
+  }
+
+  theme: H.themes.classic
+}

@@ -1,0 +1,90 @@
+Model public_persisted_orders {
+  type: 'table'
+  label: 'Orders'
+  description: ''
+  data_source_name: 'demodb'
+  dimension id {
+    label: 'Id'
+    type: 'number'
+    hidden: false
+    definition: @sql {{ #SOURCE.id }};;
+  }
+  dimension created_at {
+    label: 'Created At'
+    type: 'datetime'
+    hidden: false
+    definition: @sql {{ #SOURCE.created_at }};;
+  }
+  dimension status {
+    label: 'Order Status'
+    type: 'text'
+    hidden: false
+    definition: @sql {{ #SOURCE.status }};;
+  }
+  dimension delivery_attempts {
+    label: 'Delivery Attempts'
+    type: 'number'
+    hidden: false
+    definition: @sql {{ #SOURCE.delivery_attempts }};;
+  }
+  dimension discount {
+    label: 'Discount'
+    type: 'number'
+    hidden: false
+    definition: @sql {{ #SOURCE.discount }};;
+  }
+  dimension user_id {
+    label: 'User Id'
+    type: 'number'
+    hidden: false
+    definition: @sql {{ #SOURCE.user_id }};;
+  }
+
+  dimension received_date {
+    label: 'Received Date'
+    type: 'date'
+    definition: @sql date( {{ #SOURCE.created_at }}) + (floor(random() * 10 + 1)::int) ;;
+  }
+
+  dimension created_date {
+    label: 'Created Date'
+    type: 'date'
+    definition: @sql date( {{ #SOURCE.created_at }});;
+  }
+
+
+  owner: 'tri.dvm@holistics.io'
+  table_name: '"ecommerce"."orders"'
+  measure avg_discount {
+    label: "Avg Discount"
+    type: "number"
+    definition: @sql {{ discount }};;
+    aggregation_type: "avg"
+    format: "#,###0.00"
+  }
+
+  param date_param {
+    label: 'Date Param'     // How it appears in the UI
+    type: 'date'                             // Data type (text, number, datetime)
+    description: 'Date Param'   // Helps other users understand the purpose
+  }
+
+  dimension date_param_field {
+    label: 'Date Param Field'
+    type: 'date'
+    definition: @aql public_persisted_orders.date_param | first() ;;
+  }
+
+  dimension formatted_created_at {
+    label: 'Formatted Date'
+    type: 'text'
+    definition: @aql date_format(public_persisted_orders.created_at, '%Y-%m') ;;
+  }
+ 
+  // measure order_value {
+  //   label: "Order value"
+  //   type: "number"
+  //   definition: @aql sum(public_persisted_order_items.order_item_value);;
+  //   format: "#,###0.00"
+  // }
+}

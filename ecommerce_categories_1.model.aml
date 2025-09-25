@@ -1,0 +1,26 @@
+Model ecommerce_categories_12 {
+  type: 'table'
+  label: 'Categories 12'
+  data_source_name: 'demodb'
+  dimension id {
+    label: 'Id'
+    type: 'number'
+    definition: @sql {{ #SOURCE.id }};;
+    description: "primary ha"
+  }
+  dimension name {
+    label: 'Name'
+    type: 'text'
+    hidden: false
+    definition: @sql {{ #SOURCE.name }};;
+  }
+  dimension parent_id {
+    label: 'Parent Id'
+    type: 'number'
+    hidden: false
+    definition: @sql {{ #SOURCE.parent_id }};;
+  }
+  // commend sthing
+  owner: 'huy.vu@holistics.io'
+  table_name: '"ecommerce"."categories"'
+}

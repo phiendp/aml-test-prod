@@ -1,0 +1,34 @@
+Dashboard vu_du {
+  title: 'Vu Du'
+  description: '''vux test dashboard 1'''
+  view: CanvasLayout {
+    label: 'View 1'
+    height: 800
+    block v1 {
+      position: pos(20, 30, 400, 300)
+    }
+  }
+  block v1: VizBlock {
+    label: 'test'
+    viz: DataTable {
+      dataset: hsds
+      fields: [
+        VizFieldFull {
+          ref: ref('homestay_hosts', 'id')
+          aggregation: 'count'
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        }
+      ]
+      settings {
+        show_row_number: true
+      }
+    }
+    settings {
+      hide_label: true
+    }
+  }
+
+}

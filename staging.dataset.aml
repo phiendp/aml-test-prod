@@ -1,0 +1,17 @@
+Dataset staging {
+  __engine__: 'aql'
+  label: 'Staging'
+  description: 'test'
+  data_source_name: 'staging2'
+  models: [
+    public_users
+  ]
+  relationships: [
+  ]
+  owner: 'tien.tt@holistics.io'
+  metric total_users {
+    label: "Total Users"
+    type: "number"
+    definition: @aql count(public_users.id);;
+  }
+}

@@ -1,0 +1,11 @@
+Dataset users {
+  label: 'Users'
+  description: ''
+  data_source_name: 'staging2'
+  models: [
+    public_users
+  ]
+  relationships: [
+  ]
+  owner: 'hoa.huynh@holistics.io'
+}

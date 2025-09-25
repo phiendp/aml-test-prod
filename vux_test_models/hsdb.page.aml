@@ -1,0 +1,39 @@
+Dashboard unnamed {
+  title: 'Unnamed Dashboard nerrrrwerwerwereeeee'
+  description: ''''''
+  view: CanvasLayout {
+    label: 'View 1'
+    width: 1210
+    height: 810
+    block v1 {
+      position: pos(30, 20, 570, 310)
+    }
+  }
+  block v1: VizBlock {
+    label: 'listings'
+    viz: DataTable {
+      dataset: hsds
+      fields: [
+        VizFieldFull {
+          ref: ref('homestay_listings', 'name')
+          format {
+            type: 'text'
+          }
+        },
+        VizFieldFull {
+          ref: ref('homestay_hosts', 'registered_date')
+          format {
+            type: 'date'
+          }
+        }
+      ]
+      settings {
+        show_row_number: true
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+}

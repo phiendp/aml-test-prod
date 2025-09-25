@@ -1,0 +1,64 @@
+Model homestay_bookings {
+  type: 'table'
+  label: 'Bookings'
+  description: 'anh Huy ngoi canh anh Hoang, anh Hoang ngoi canh anh Huy'
+  data_source_name: 'demodb'
+  dimension id {
+    label: 'Id'
+    type: 'number'
+    hidden: false
+    definition: @sql {{ #SOURCE.id }};;
+  }
+  dimension listing_id {
+    description: '123'
+    label: 'Listing Iddd'
+    type: 'number'
+    hidden: false
+    definition: @sql {{ #SOURCE.listing_id }};;
+  }
+  dimension check_in_date {
+    label: 'Check In Date'
+    type: 'date'
+    hidden: false
+    definition: @sql {{ #SOURCE.check_in_date }};;
+  }
+  dimension check_out_date {
+    label: 'Check Out Date'
+    type: 'date'
+    hidden: false
+    definition: @sql {{ #SOURCE.check_out_date }};;
+  }
+  dimension nights {
+    label: 'Nights'
+    type: 'number'
+    hidden: false
+    definition: @sql {{ #SOURCE.nights }};;
+  }
+  dimension adults {
+    label: 'Adults'
+    type: 'number'
+    hidden: false
+    definition: @sql {{ #SOURCE.adults }};;
+  }
+  dimension children {
+    label: 'Children'
+    type: 'number'
+    hidden: false
+    definition: @sql {{ #SOURCE.children }};;
+  }
+  dimension babies {
+    label: 'Babies'
+    type: 'number'
+    hidden: false
+    definition: @sql {{ #SOURCE.babies }};;
+  }
+  dimension reservation_status {
+    label: 'Reservation Status'
+    type: 'text'
+    hidden: false
+    definition: @sql {{ #SOURCE.reservation_status }};;
+  }
+
+  owner: 'hoang.do@holistics.io'
+  table_name: '"homestay"."bookings"'
+}

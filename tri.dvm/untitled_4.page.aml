@@ -1,0 +1,389 @@
+Dashboard untitled_4 {
+  title: 'Untitled 4'
+  description: ''''''
+
+  view: CanvasLayout {
+    label: 'View 1'
+    height: 2000
+    grid_size: 20
+    mobile {
+      mode: 'auto'
+    }
+    block f1 {
+      position: pos(20, 20, 300, 100)
+      layer: 1
+    }
+    block f2 {
+      position: pos(340, 20, 260, 80)
+      layer: 2
+    }
+    block v1 {
+      position: pos(340, 160, 760, 420)
+      layer: 3
+    }
+    block f3 {
+      position: pos(0, 160, 300, 100)
+      layer: 4
+    }
+    block f4 {
+      position: pos(20, 600, 300, 100)
+      layer: 1
+    }
+    block v2 {
+      position: pos(360, 620, 920, 420)
+      layer: 1
+    }
+    block v3 {
+      position: pos(320, 1080, 1100, 520)
+      layer: 1
+    }
+    width: 1880
+  }
+
+  theme: H.themes.vanilla
+  block f1: FilterBlock {
+    label: 'A'
+    type: 'field'
+    source: FieldFilterSource {
+      dataset: staging
+      field: ref('public_users', 'name')
+    }
+    default {
+      operator: 'is'
+      value: []
+    }
+  }
+  block f2: FilterBlock {
+    label: 'ACs'
+    type: 'field'
+    source: FieldFilterSource {
+      dataset: public_ecommerce
+      field: ref('public_persisted_orders', 'avg_discount')
+    }
+    default {
+      operator: 'is'
+      value: []
+    }
+  }
+  block v1: VizBlock {
+    label: 'Demo Viz'
+    viz: DataTable {
+      dataset: public_ecommerce
+      calculation metric_7cc9c50 {
+        label: 'Untitled Metric'
+        formula: @aql @(1970 01 Jan to 2050 01 Jan) + interval(1 month);;
+        calc_type: 'measure'
+        data_type: 'datetime'
+      }
+      calculation metric_e7c2bcb {
+        label: 'Untitled Metric'
+        formula: @aql public_persisted_orders.created_at + interval(1 month);;
+        calc_type: 'measure'
+        data_type: 'datetime'
+      }
+      conditions: [
+        ''' (
+   public_persisted_orders.received_date >=  @(2022/05/27)
+  and
+  (
+  public_persisted_orders.created_at matches @(2022/05/27 - 2022/06/02)
+  or
+  public_persisted_orders.received_date <= @(2022/05/27)
+  )
+)'''
+      ]
+      fields: [
+        VizFieldFull {
+          ref: ref('public_persisted_orders', 'id')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        },
+        VizFieldFull {
+          ref: ref('public_persisted_orders', 'created_at')
+          format {
+            type: 'datetime'
+          }
+        },
+        VizFieldFull {
+          ref: ref('public_persisted_orders', 'received_date')
+          format {
+            type: 'date'
+          }
+        },
+        VizFieldFull {
+          ref: 'metric_7cc9c50'
+          format {
+            type: 'datetime'
+          }
+        }
+      ]
+      settings {
+        show_row_number: true
+        sorts: [
+          SortSetting {
+            field_index: 1
+            direction: 'asc'
+          }
+        ]
+        row_limit: 5000
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  block f3: FilterBlock {
+    label: 'Orders Created At'
+    type: 'field'
+    source: FieldFilterSource {
+      dataset: public_ecommerce
+      field: ref('public_persisted_orders', 'date_param')
+    }
+    default {
+      operator: 'matches'
+      value: '2025-07-04 - 2025-07-18'
+    }
+  }
+  block f4: FilterBlock {
+    label: 'Orders Created At'
+    type: 'field'
+    source: FieldFilterSource {
+      dataset: public_ecommerce
+      field: ref('public_persisted_orders', 'date_param')
+    }
+    default {
+      operator: 'matches'
+      value: '2022-01-27'
+    }
+  }
+  block v2: VizBlock {
+    label: 'ABC'
+    viz: DataTable {
+      dataset: public_ecommerce
+      calculation dimension_f9dc5e8 {
+        label: 'created_at_trunc'
+        formula: @aql date_trunc(public_persisted_orders.created_at, 'month');;
+        calc_type: 'dimension'
+        data_type: 'datetime'
+        model: public_persisted_orders
+      }
+      calculation metric_46c5b40 {
+        label: 'last_day'
+        formula: @aql last_day(first(public_persisted_orders.date_param), 'month');;
+        calc_type: 'measure'
+        data_type: 'date'
+      }
+      calculation metric_0d04e26 {
+        label: 'date_param'
+        formula: @aql first(public_persisted_orders.date_param);;
+        calc_type: 'measure'
+        data_type: 'date'
+      }
+      conditions: [
+        '''public_persisted_orders.created_at matches first(public_persisted_orders.date_param)
+or
+public_persisted_orders.formatted_created_at == date_format(first(public_persisted_orders.date_param), '%Y-%m')'''
+      ]
+      fields: [
+        VizFieldFull {
+          ref: ref('public_persisted_orders', 'id')
+          format {
+            type: 'number'
+            pattern: 'inherited'
+          }
+        },
+        VizFieldFull {
+          ref: ref('public_persisted_orders', 'created_at')
+          format {
+            type: 'datetime'
+          }
+        },
+        VizFieldFull {
+          ref: ref('public_persisted_orders', 'received_date')
+          format {
+            type: 'date'
+          }
+        },
+        VizFieldFull {
+          ref: ref('public_persisted_orders', 'dimension_f9dc5e8')
+          format {
+            type: 'datetime'
+          }
+        },
+        VizFieldFull {
+          ref: 'metric_46c5b40'
+          format {
+            type: 'date'
+          }
+          uname: 'custom_metric_46c5b40'
+        },
+        VizFieldFull {
+          ref: 'metric_0d04e26'
+          format {
+            type: 'date'
+          }
+        },
+        VizFieldFull {
+          ref: ref('public_persisted_orders', 'formatted_created_at')
+          format {
+            type: 'date'
+          }
+        }
+      ]
+      settings {
+        show_row_number: true
+        sorts: [
+          SortSetting {
+            field_index: 1
+            direction: 'asc'
+          }
+        ]
+        row_limit: 5000
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+        column_styles: [
+          ColumnStyle {
+            key: 'custom_metric_46c5b40'
+            width: 98
+          }
+        ]
+      }
+    }
+  }
+  block v3: VizBlock {
+    label: 'ABC'
+    viz: DataTable {
+      dataset: public_ecommerce
+      calculation dimension_f9dc5e8 {
+        label: 'created_at_trunc'
+        formula: @aql date_trunc(public_persisted_orders.created_at, 'month');;
+        calc_type: 'dimension'
+        data_type: 'datetime'
+        model: public_persisted_orders
+      }
+      calculation metric_46c5b40 {
+        label: 'last_day'
+        formula: @aql last_day(first(public_persisted_orders.date_param), 'month');;
+        calc_type: 'measure'
+        data_type: 'date'
+      }
+      calculation metric_0d04e26 {
+        label: 'date_param'
+        formula: @aql first(public_persisted_orders.date_param);;
+        calc_type: 'measure'
+        data_type: 'date'
+      }
+      calculation metric_e1adcf8 {
+        label: 'Buyers'
+        formula: @aql concat(
+  "<table border='1'><thead><tr><th>Name</th><th>Gender</th><th>Email</th></tr></thead><tbody>",
+  string_agg(
+    concat(
+      "<tr><td>",
+        public_persisted_users.full_name,
+      '</td><td>',
+        public_persisted_users.gender,
+      '</td><td>',
+        public_persisted_users.email,
+      '</td></tr>')
+    , sep: ''
+  ),
+  "</tbody></table>"
+);;
+        calc_type: 'measure'
+        data_type: 'text'
+      }
+      fields: [
+        VizFieldFull {
+          label: 'Category'
+          ref: ref('public_persisted_categories', 'name')
+          format {
+            type: 'text'
+          }
+        },
+        VizFieldFull {
+          label: 'Product'
+          ref: ref('public_persisted_products', 'name')
+          format {
+            type: 'text'
+          }
+        },
+        VizFieldFull {
+          ref: 'metric_e1adcf8'
+          format {
+            type: 'html'
+          }
+        }
+      ]
+      settings {
+        show_row_number: true
+        row_limit: 5000
+        aggregate_awareness {
+          enabled: true
+          debug_comments: true
+        }
+      }
+    }
+  }
+  interactions: [
+    FilterInteraction {
+      from: 'f2'
+      to: [
+        CustomMapping {
+          block: [
+            'f3',
+            'f4'
+          ]
+          disabled: true
+        }
+      ]
+    },
+    FilterInteraction {
+      from: 'f3'
+      to: [
+        CustomMapping {
+          block: 'v2'
+          disabled: true
+        }
+      ]
+    },
+    FilterInteraction {
+      from: 'f3'
+      to: [
+        CustomMapping {
+          block: [
+            'f2',
+            'f4'
+          ]
+          disabled: true
+        }
+      ]
+    },
+    FilterInteraction {
+      from: 'f4'
+      to: [
+        CustomMapping {
+          block: 'v1'
+          disabled: true
+        }
+      ]
+    },
+    FilterInteraction {
+      from: 'f4'
+      to: [
+        CustomMapping {
+          block: [
+            'f2',
+            'f3'
+          ]
+          disabled: true
+        }
+      ]
+    }
+  ]
+}

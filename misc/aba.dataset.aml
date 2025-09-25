@@ -1,0 +1,14 @@
+Dataset sdsd {
+  label: 'Tai test'
+  description: 'hihi hehe'
+  data_source_name: 'demodb'
+  models: [
+    homestay_hosts,
+    homestay_listings
+  ]
+  relationships: [
+    relationship(homestay_listings.host_id > homestay_hosts.id, true)
+  ]
+  owner: 'hoang.do+gaa@holistics.io'
+
+}

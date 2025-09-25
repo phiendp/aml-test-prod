@@ -1,0 +1,20 @@
+Dataset hsds {
+  label: 'Homestay Dataset'
+  description: 'Explore homestay listings with this dataset'
+  data_source_name: 'demodb'
+  models: [
+    homestay_hosts,
+    homestay_listings
+  ]
+  relationships: [
+    relationship(homestay_listings.host_id > homestay_hosts.id, true)
+  ]
+  owner: 'hoang.do+gaa@holistics.io'
+  metric count_room_type {
+    label: "Count Room Type"
+    type: "number"
+    hidden: false
+    description: ""
+    definition: @aql count_distinct(homestay_listings.name);;
+  }
+}
